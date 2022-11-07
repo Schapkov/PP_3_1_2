@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New user</title>
+</head>
+<body>
+<h1>New user</h1>
+
+<form th:method="POST" th:action="@{/admin/new/}" th:object="${user}">
+    <table border="1">
+        <tr>
+            <td>
+                <label for="name">Name</label>
+                <input type="text" th:field="*{name}" id="name"/>
+                <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="surname">Surname</label>
+                <input type="text" th:field="*{surname}" id="surname"/>
+                <div th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}">Surname error</div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="age">Age</label>
+                <input type="number" th:field="*{age}" id="age"/>
+                <div th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Age error</div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="username">Username</label>
+                <input type="text" th:field="*{username}" id="username"/>
+                <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}">password error</div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="password">Password</label>
+                <input type="password" th:field="*{password}" id="password"/>
+                <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}">password error</div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Select role:
+                    <select name="role" required="required">
+                        <option selected="selected" value="1">Admin</option>
+                        <option value="2">User</option>
+                    </select>
+                </label>
+            </td>
+        </tr>
+
+    </table>
+    <br>
+    <br>
+    <input type="submit" value="Add user">
+</form>
+<br>
+<button class="buttonLogout" onclick="window.location.href = '/logout';">Logout</button>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+</head>
+<body>
+<h1>Users</h1>
+<br>
+<button onclick="window.location.href = '/admin/new';">Add new user</button>
+<br>
+<br>
+<table border="1">
+    <tr>
+        <th HIDDEN>UserId</th>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Age</th>
+        <th>Username</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    <tr align="center" th:each="user :${allUsers}">
+        <td HIDDEN th:text="${user.getId}">UserId</td>
+        <td th:href="@{/{id}(id=${user.getId()})}" th:text="${user.getName}">Name</td>
+        <td th:text="${user.getSurname}">Surname</td>
+        <td th:text="${user.getAge}">Age</td>
+        <td th:text="${user.getUsername()}">Username</td>
+        <td>
+            <form th:action="@{/admin/{id}/edit(id=${user.getId()})}">
+                <input type="submit" class="buttonEdit" value="Edit"/>
+            </form>
+        </td>
+        <td>
+            <form th:method="DELETE" th:action="@{/admin/{id}(id=${user.getId()})}">
+                <input type="submit" class="buttonEdit" value="Delete"/>
+            </form>
+        </td>
+    </tr>
+</table>
+<br>
+<button class="buttonLogout" onclick="window.location.href = '/logout';">Logout</button>
+</body>
+</html>
